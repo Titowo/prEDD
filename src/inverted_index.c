@@ -75,16 +75,16 @@ void indice_invertido_agregar_termino(indiceInvertido* idx, const char* palabra,
     lista_posteo_insertar_o_incrementar(&idx->entradas[pos].list_documentos_cabeza, documento);
 }
 
-ListaPosteo indice_invertido_obtener_posteo(const indiceInvertido* idx, const char* palabra) {
+nodePtr buscar_lista_posteo_termino(const indiceInvertido* idx, const char* palabra) {
     ssize_t pos = buscar_pos_termino(idx, palabra);
     return (pos >= 0) ? idx->entradas[pos].list_documentos_cabeza : NULL;
 }
 
-ListaPosteo lista_posteo_intersectar(const nodePtr a, const nodePtr b) {
-    ListaPosteo resultado = NULL;
+nodePtr intersectar_listas_posteo(const nodePtr a, const nodePtr b) {
+    nodePtr resultado = NULL;
 
-    for (NodoPosteo* nodoA = a; nodoA != NULL; nodoA = nodoA->siguiente) {
-        for (NodoPosteo* nodoB = b; nodoB != NULL; nodoB = nodoB->siguiente) {
+    for (node* nodoA = a; nodoA != NULL; nodoA = nodoA->next) {
+        for (node* nodoB = b; nodoB != NULL; nodoB = nodoB->next) {
             if (strcmp(nodoA->documento, nodoB->documento) == 0) {
                 lista_posteo_insertar_o_incrementar(&resultado, nodoA->documento);
                 break;

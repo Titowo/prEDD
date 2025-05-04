@@ -13,7 +13,7 @@
  * insensible al caso).
  * @param filename El nombre/ruta del archivo que contiene las stop words.
  * @return bool Devuelve true si la carga fue exitosa (archivo leído y memoria asignada),
- * false si ocurre algún error (ej. no se pudo abrir el archivo, error de memoria).
+ * false si ocurre algún error 
  */
 bool cargar_stopwords(const char* filename);
 
@@ -33,4 +33,4 @@ bool es_stopword(const char* word);
  */
 void free_stopwords();
 
-#endif // stopword_H_ // Corregido el cierre del #ifndef
+#endif // stopword_H_ 

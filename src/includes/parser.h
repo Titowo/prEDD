@@ -11,10 +11,10 @@
  * Lee el archivo línea por línea, donde cada línea representa un documento.
  * Para cada línea, extrae la URL (ID del documento) y el contenido de texto.
  * Luego, tokeniza el contenido y añade los términos válidos (no stopwords) al índice.
- * Se espera que el archivo tenga el formato especificado: URL || Contenido [source: 40, 41].
- * @param filename El nombre/ruta del archivo de documentos a procesar (ej. "gov2_pages.dat" [source: 39]).
+ * Se espera que el archivo tenga el formato especificado: URL || Contenido
+ * @param filename El nombre/ruta del archivo de documentos a procesar
  * @param index Puntero al índice invertido que se llenará con los términos y documentos.
- * @return bool Devuelve true si el archivo se procesó completamente sin errores fatales (ej. no poder abrir el archivo),
+ * @return bool Devuelve true si el archivo se procesó completamente sin errores fatales 
  * de lo contrario devuelve false.
  */
 bool procesar_archivo_documento(const char* filename, indiceInvertido* index);
@@ -23,7 +23,7 @@ bool procesar_archivo_documento(const char* filename, indiceInvertido* index);
  * @brief Parsea una única línea del archivo de documentos para separar la URL del contenido.
  * Busca el último separador "||" en la línea para distinguir la URL del contenido [source: 40, 41].
  * Asigna memoria dinámicamente para almacenar la URL y el contenido como cadenas separadas.
- * ¡IMPORTANTE! El llamador de esta función es responsable de liberar la memoria
+ * IMPORTANTE! El llamador de esta función es responsable de liberar la memoria
  * asignada para *url_out y *contenido_out usando free() cuando ya no se necesiten.
  * @param line La línea de texto completa leída del archivo.
  * @param url_out Puntero a un char* donde se almacenará el puntero a la cadena de la URL asignada.
