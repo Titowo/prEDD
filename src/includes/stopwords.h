@@ -7,7 +7,7 @@
 
 /**
  * @brief Carga la lista de stop words desde un archivo de texto.
- * Lee el archivo especificado (ej. "stopwords_english.dat" [source: 45]), donde se espera
+ * Lee el archivo especificado donde se espera
  * que cada línea contenga una única stop word. Almacena las stop words
  * internamente en memoria (probablemente en minúsculas para comparación
  * insensible al caso).
@@ -25,7 +25,7 @@ bool cargar_stopwords(const char* filename);
  * @return bool Devuelve true si la palabra se encuentra en la lista de stop words cargada,
  * false en caso contrario.
  */
-bool is_stopword(const char* word);
+bool es_stopword(const char* word);
 
 /**
  * @brief Libera toda la memoria utilizada para almacenar la lista de stop words.

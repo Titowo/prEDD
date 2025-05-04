@@ -1,8 +1,8 @@
 #ifndef parser_H_
 #define parser_H_
 
-#include "inverted_index.h" // Necesita la definición de indiceInvertido y sus funciones.
-#include <stdbool.h>       // Necesario para bool.
+#include "inverted_index.h"
+#include <stdbool.h>       
 
 // --- Prototipos de Funciones para el Parseo de Documentos ---
 

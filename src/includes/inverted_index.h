@@ -52,7 +52,7 @@ void destruir_indice(indiceInvertido* indice);
  * @param documento el identificado de documento en el que se encontro la palabra.
 **/
 
-void anadir_termino(indiceInvertido* indice, const char* termino, const char* documento);
+void anadir_termino(indiceInvertido* indice, const char* palabra, const char* documento);
 
 /**
  * @brief busca un termino en el indice y devuelve el puntero de la cabeza de su lista de posteo.
@@ -62,7 +62,7 @@ void anadir_termino(indiceInvertido* indice, const char* termino, const char* do
  * devuelve NULL si el termino no se encuentra en el indice.
 **/
 
-nodePtr buscar_lista_posteo_termino(indiceInvertido* indice, const char* termino);
+nodePtr buscar_lista_posteo_termino(indiceInvertido* indice, const char* palabra);
 
 /**
  * @brief Calcula la interseccion de dos lista de posteo y devuelve un puntero cabeza de su lista de posteo.
