@@ -4,6 +4,8 @@
 #include "list.h"       
 #include <stddef.h>     // Para size_t
 
+#define ssize_t ptrdiff_t
+
 /**
  * @brief Define una entrada del vocabulario: mapea una palabra (termino)
  * a la cabeza de su lista de documentos (lista_documentos_cabeza).
@@ -62,7 +64,7 @@ void anadir_termino(indiceInvertido* indice, const char* palabra, const char* do
  * devuelve NULL si el termino no se encuentra en el indice.
 **/
 
-nodePtr buscar_lista_posteo_termino(indiceInvertido* indice, const char* palabra);
+nodePtr buscar_lista_posteo_termino(const indiceInvertido* indice, const char* palabra);
 
 /**
  * @brief Calcula la interseccion de dos lista de posteo y devuelve un puntero cabeza de su lista de posteo.
