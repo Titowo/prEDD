@@ -4,7 +4,7 @@
 
 int main(int argc, char const *argv[])
 {
-    char* filename = "../data/stopwords_english.dat.txt";
+    char* filename = "./data/stopwords_english.dat.txt";
     cargar_stopwords(filename);
     free_stopwords();
     return 0;

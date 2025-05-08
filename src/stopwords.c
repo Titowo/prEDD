@@ -4,8 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <ctype.h>
+// #include <ctype.h>
 #include <string.h>
+#include <errno.h>
 
 // Puntero al arreglo dinamico que tendra las palabras;
 static char** stopwords_list = NULL;
@@ -21,7 +22,7 @@ static size_t stopwords_capacidad = 0;
 bool cargar_stopwords(const char* filename) {
     FILE *archivo = fopen(filename, "r");
     if (archivo == NULL) {
-        fprintf(stderr, "Error no se pudo abrir el archivo de STOPWORDS %s\n");
+        fprintf(stderr, "Error: no se pudo abrir el archivo de STOPWORDS '%s': %s\n", filename, strerror(errno)); 
         return false;
     }
 
@@ -34,7 +35,7 @@ bool cargar_stopwords(const char* filename) {
     stopwords_capacidad = CAPACIDAD_INICIAL_STOPWORDS;
     stopwords_list = (char **)malloc(stopwords_capacidad * sizeof(char*));
     if (stopwords_list == NULL) {
-        fprintf(stderr, "Error al asignar memoria para stopwords %s\n");
+        fprintf(stderr, "Error al asignar memoria para la lista de stopwords: %s\n", strerror(errno)); 
         return false;
     }
 
@@ -58,7 +59,7 @@ bool cargar_stopwords(const char* filename) {
             size_t nueva_capacidad = stopwords_capacidad * FACTOR_CRECIMIENTO_STOPWORDS;
             char** temp = (char**)realloc(stopwords_list, nueva_capacidad * sizeof(char*));
             if (temp == NULL) {
-                fprintf(stderr, "Error al realloc de stopwords %s\n");
+                fprintf(stderr, "Error al redimensionar (realloc) la memoria para stopwords: %s\n", strerror(errno));
                 fclose(archivo);
                 return false;
             }
@@ -69,7 +70,7 @@ bool cargar_stopwords(const char* filename) {
         stopwords_list[stopwords_cantidad] = (char*)malloc(len + 1);
 
         if (stopwords_list[stopwords_cantidad] == NULL) {
-            fprintf(stderr, "Error: Fallo de memoria al guardar stopword (linea %zu aprox).\n", stopwords_cantidad + 1); // Mensaje específico
+            fprintf(stderr, "Error: Fallo de memoria al guardar stopword (linea %zu aprox.): %s\n", stopwords_cantidad + 1, strerror(errno)); 
             fclose(archivo);
             return false; 
         } else {    
