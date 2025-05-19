@@ -1,2 +1,2 @@
 main: ./src/main.c
-	gcc ./src/main.c -o app -Wall -Wextra -pedantic -std=c99
+	gcc -Wall -g -o buscador src/main.c src/list.c src/stopwords.c src/inverted_index.c src/parser.c
