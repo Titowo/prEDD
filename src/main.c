@@ -23,7 +23,7 @@ static void main_convertir_a_minusculas(char *cadena) {
 
 void imprimir_uso(const char* nombre_programa) {
     printf("Uso: %s [<ruta_archivo_stopwords> <ruta_archivo_documentos>]\n", nombre_programa);
-    printf("  Si no se especifican rutas, se usarán los valores por defecto:\n");
+    printf("  Si no se especifican rutas, se usaran los valores por defecto:\n");
     printf("    Archivo de Stopwords: data/stopwords_english.dat.txt\n");
     printf("    Archivo de Documentos: data/gov2_pages.dat\n");
 }
@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
     if (argc == 1) {
         printf("[MAIN_info] No se especificaron las rutas de archivos, usando valores por defecto.");
         archivo_stopwords_path    = "data/stopwords_english.dat.txt";
-        archivo_documentos_path   = "data/gov2_pages.dat";
+        archivo_documentos_path   = "data/small_gov.dat";
     } else if (argc == 3) {
         archivo_stopwords_path = argv[1];
         archivo_documentos_path = argv[2];
