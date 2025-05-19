@@ -1,12 +1,12 @@
-#include "includes/stopwords.h" // Tu .h de stopwords
+#include "includes/stopwords.h"
 
-#include <stddef.h>  // Para size_t
-#include <stdio.h>   // Para FILE, fopen, fclose, fgets, fprintf, stderr, printf
-#include <stdlib.h>  // Para malloc, realloc, free
-#include <stdbool.h> // Para bool
-#include <string.h>  // Para strcmp, strlen, strcpy, strdup
-#include <ctype.h>   // Para tolower
-#include <errno.h>   // Para strerror
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+#include <ctype.h>
+#include <errno.h>
 
 // --- Variables Estáticas (internas a este módulo) ---
 static char** g_stopwords_list = NULL;

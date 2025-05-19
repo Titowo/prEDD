@@ -35,8 +35,7 @@ bool parsear_linea(char* linea_original, char** url_salida, char** contenido_sal
  * @brief Tokeniza el contenido textual de un documento y añade los términos válidos al índice.
  * Recorre la cadena 'contenido', la divide en palabras (tokens) usando espacios y/o
  * signos de puntuación como delimitadores.
- * Para cada token (palabra): lo convierte a minúsculas, verifica si es una stopword (implícito,
- * la función anadir_termino debería manejarlo o se verifica aquí antes de llamar) y, si es
+ * Para cada token: lo convierte a minúsculas, verifica si es una stopword y, si es
  * un término válido, lo añade al índice asociado al 'documento' dado usando la función
  * anadir_termino del módulo inverted_index.
  * @param contenido La cadena de texto con el contenido del documento.

@@ -58,7 +58,7 @@ void crear_archivo_test_documentos() {
 
 // --- Tests para el Módulo STOPWORDS ---
 void test_modulo_stopwords() {
-    imprimir_titulo_test("Módulo Stopwords");
+    imprimir_titulo_test("Modulo Stopwords");
     crear_archivo_test_stopwords();
 
     printf("  Intentando cargar stopwords desde '%s'...\n", TEST_STOPWORDS_FILE);
@@ -76,18 +76,18 @@ void test_modulo_stopwords() {
         free_stopwords();
         printf("  Stopwords liberadas.\n");
         // Probamos si es_stopword devuelve false después de liberar (debería, ya que la lista estaría vacía)
-        printf("  Probando es_stopword('de') después de liberar: %s\n", !es_stopword("de") ? "false (CORRECTO)" : "true (ERROR)");
+        printf("  Probando es_stopword('de') despues de liberar: %s\n", !es_stopword("de") ? "false (CORRECTO)" : "true (ERROR)");
 
     } else {
         fprintf(stderr, "  ERROR: cargar_stopwords falló.\n");
     }
     remove(TEST_STOPWORDS_FILE); // Limpiamos el archivo de prueba
-    imprimir_fin_test("Módulo Stopwords");
+    imprimir_fin_test("Modulo Stopwords");
 }
 
 // --- Tests para el Módulo LIST ---
 void test_modulo_list() {
-    imprimir_titulo_test("Módulo List (Listas Enlazadas)");
+    imprimir_titulo_test("Modulo List (Listas Enlazadas)");
     nodePtr cabeza = NULL;
 
     printf("  Insertando 'doc1.txt'...\n");
@@ -99,7 +99,7 @@ void test_modulo_list() {
     printf("  Insertando 'doc3.html'...\n");
     insertar_o_sumar_node(&cabeza, "doc3.html"); // Frecuencia 1
 
-    printf("  Contenido de la lista después de inserciones:\n");
+    printf("  Contenido de la lista despues de inserciones:\n");
     print_list(cabeza);
 
     // Test crear_nodo individualmente (aunque insertar_o_sumar_node ya lo usa)
@@ -112,7 +112,7 @@ void test_modulo_list() {
         free(nodo_suelto);
         printf("    Nodo suelto liberado.\n");
     } else {
-        fprintf(stderr, "  ERROR: crear_nodo falló para 'doc_test_individual.txt'.\n");
+        fprintf(stderr, "  ERROR: crear_nodo fallo para 'doc_test_individual.txt'.\n");
     }
 
 
@@ -124,21 +124,21 @@ void test_modulo_list() {
         fprintf(stderr, "  ERROR: La cabeza de la lista no es NULL después de free_list.\n");
     }
     // Imprimimos de nuevo para verificar que esté vacía (no debería imprimir nada)
-    printf("  Contenido de la lista después de liberar (debería estar vacía):\n");
+    printf("  Contenido de la lista despues de liberar (deberia estar vacia):\n");
     print_list(cabeza);
 
-    imprimir_fin_test("Módulo List (Listas Enlazadas)");
+    imprimir_fin_test("Modulo List (Listas Enlazadas)");
 }
 
 // --- Tests para el Módulo INVERTED_INDEX ---
 void test_modulo_inverted_index() {
-    imprimir_titulo_test("Módulo Inverted Index");
+    imprimir_titulo_test("Modulo Inverted Index");
     indiceInvertido* idx = crear_indice(4); // Capacidad inicial pequeña para probar crecimiento.
     if (!idx) {
-        fprintf(stderr, "  ERROR: crear_indice falló. No se pueden continuar los tests del índice.\n");
+        fprintf(stderr, "  ERROR: crear_indice fallo. No se pueden continuar los tests del indice.\n");
         return;
     }
-    printf("  Índice creado con capacidad inicial: %zu\n", idx->capacidad);
+    printf("  Indice creado con capacidad inicial: %zu\n", idx->capacidad);
 
     printf("  Añadiendo términos...\n");
     anadir_termino(idx, "hola", "doc1");
@@ -148,7 +148,7 @@ void test_modulo_inverted_index() {
     anadir_termino(idx, "prueba", "doc3");
     anadir_termino(idx, "hola", "doc1"); // Debería incrementar frecuencia en ("hola", "doc1")
 
-    printf("  Índice después de añadir términos (Cantidad: %zu, Capacidad: %zu):\n", idx->cantidad, idx->capacidad);
+    printf("  Indice despues de añadir terminos (Cantidad: %zu, Capacidad: %zu):\n", idx->cantidad, idx->capacidad);
     // Para ver el contenido, buscamos algunos términos
     nodePtr lista_hola = buscar_lista_posteo_termino(idx, "hola");
     printf("    Documentos para 'hola':\n    ");
@@ -159,12 +159,12 @@ void test_modulo_inverted_index() {
     print_list(lista_mundo);
 
     nodePtr lista_inexistente = buscar_lista_posteo_termino(idx, "chao");
-    printf("    Documentos para 'chao' (debería ser NULL o lista vacía):\n    ");
+    printf("    Documentos para 'chao' (deberia ser NULL o lista vacia):\n    ");
     if (lista_inexistente == NULL) printf("NULL (CORRECTO)\n"); else print_list(lista_inexistente);
 
 
     // Test de intersección
-    printf("  Probando intersección de 'hola' y 'test' (ambos en doc1)...\n");
+    printf("  Probando interseccion de 'hola' y 'test' (ambos en doc1)...\n");
     // buscar_lista_posteo_termino devuelve punteros a listas internas, no debemos liberarlas.
     // intersectar_listas_posteo devuelve una NUEVA lista que SÍ debemos liberar.
     nodePtr interseccion1 = intersectar_listas_posteo(lista_hola, lista_mundo); // hola (d1,d2), mundo (d1) -> d1
@@ -184,34 +184,34 @@ void test_modulo_inverted_index() {
     destruir_indice(idx);
     printf("  Índice destruido.\n");
 
-    imprimir_fin_test("Módulo Inverted Index");
+    imprimir_fin_test("Modulo Inverted Index");
 }
 
 // --- Tests para el Módulo PARSER ---
 void test_modulo_parser() {
-    imprimir_titulo_test("Módulo Parser");
+    imprimir_titulo_test("Modulo Parser");
 
     // Test para parsear_linea
     printf("  Testeando parsear_linea...\n");
-    char linea1_test[] = "http://ejemplo.com/pagina1||Este es el contenido de la pagina uno"; // Usar array para que strtok no falle
+    char linea1_test[] = "http://ejemplo.com/pagina1||Este es el contenido de la pagina uno";
     char* url1 = NULL, *contenido1 = NULL;
     if (parsear_linea(linea1_test, &url1, &contenido1)) {
         printf("    Parseo OK: URL='%s', Contenido='%.30s...'\n", url1, contenido1);
         free(url1); free(contenido1);
-    } else { fprintf(stderr, "    ERROR parseando línea 1 válida.\n"); }
+    } else { fprintf(stderr, "    ERROR parseando linea 1 valida.\n"); }
 
     char linea2_test[] = "http://ejemplo.com/pagina2||"; // Contenido vacío
     char* url2 = NULL, *contenido2 = NULL;
     if (parsear_linea(linea2_test, &url2, &contenido2)) {
-        printf("    Parseo OK (contenido vacío): URL='%s', Contenido='%s'\n", url2, contenido2);
+        printf("    Parseo OK (contenido vacio): URL='%s', Contenido='%s'\n", url2, contenido2);
         free(url2); free(contenido2);
-    } else { fprintf(stderr, "    ERROR parseando línea 2 con contenido vacío.\n"); }
+    } else { fprintf(stderr, "    ERROR parseando linea 2 con contenido vacio.\n"); }
 
     char linea3_test[] = "solo_url_sin_separador";
     char* url3 = NULL, *contenido3 = NULL;
     if (!parsear_linea(linea3_test, &url3, &contenido3)) {
-        printf("    Parseo Falló (sin separador): CORRECTO, no se pudo parsear.\n");
-    } else { fprintf(stderr, "    ERROR: parsear_linea parseó incorrectamente una línea sin separador.\n"); free(url3); free(contenido3); }
+        printf("    Parseo Fallo (sin separador): CORRECTO, no se pudo parsear.\n");
+    } else { fprintf(stderr, "    ERROR: parsear_linea parseo incorrectamente una linea sin separador.\n"); free(url3); free(contenido3); }
 
     // Test para tokenizar_e_indexar_contenido y procesar_archivo_documento (juntos)
     printf("\n  Testeando procesar_archivo_documento (que usa tokenizar_e_indexar_contenido)...\n");
@@ -222,7 +222,7 @@ void test_modulo_parser() {
 
     indiceInvertido* idx_parser = crear_indice(10);
     if (!idx_parser) {
-        fprintf(stderr, "    ERROR: No se pudo crear índice para test de parser.\n");
+        fprintf(stderr, "    ERROR: No se pudo crear indice para test de parser.\n");
         free_stopwords();
         remove(TEST_STOPWORDS_FILE);
         remove(TEST_DOCS_FILE);
@@ -231,7 +231,7 @@ void test_modulo_parser() {
 
     if (procesar_archivo_documento(TEST_DOCS_FILE, idx_parser)) {
         printf("    procesar_archivo_documento finalizado.\n");
-        printf("    Índice después de procesar (Cantidad: %zu, Capacidad: %zu):\n", idx_parser->cantidad, idx_parser->capacidad);
+        printf("    Índice despues de procesar (Cantidad: %zu, Capacidad: %zu):\n", idx_parser->cantidad, idx_parser->capacidad);
 
         nodePtr lista_contenido = buscar_lista_posteo_termino(idx_parser, "contenido");
         printf("      Docs para 'contenido': "); print_list(lista_contenido);
@@ -245,11 +245,11 @@ void test_modulo_parser() {
         nodePtr lista_indexado = buscar_lista_posteo_termino(idx_parser, "indexado");
         printf("      Docs para 'indexado': "); print_list(lista_indexado);
 
-        nodePtr lista_prueba = buscar_lista_posteo_termino(idx_parser, "prueba"); // Debería estar en doc4.io
+        nodePtr lista_prueba = buscar_lista_posteo_termino(idx_parser, "prueba");
         printf("      Docs para 'prueba': "); print_list(lista_prueba);
 
     } else {
-        fprintf(stderr, "    ERROR: procesar_archivo_documento falló.\n");
+        fprintf(stderr, "    ERROR: procesar_archivo_documento fallo.\n");
     }
 
     destruir_indice(idx_parser);
@@ -257,7 +257,7 @@ void test_modulo_parser() {
     remove(TEST_STOPWORDS_FILE);
     remove(TEST_DOCS_FILE);
 
-    imprimir_fin_test("Módulo Parser");
+    imprimir_fin_test("Modulo Parser");
 }
 
 
@@ -275,8 +275,6 @@ int main(void) {
     printf("\n=============================================\n");
     printf("====== FIN DE TODAS LAS PRUEBAS       ======\n");
     printf("=============================================\n");
-    printf("Recuerda ejecutar este programa con una herramienta de detección de fugas de memoria\n");
-    printf("(como Valgrind en Linux) para un análisis completo.\n");
 
     return EXIT_SUCCESS;
 }

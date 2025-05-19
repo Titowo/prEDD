@@ -1,7 +1,7 @@
 #ifndef stopword_H_
 #define stopword_H_
 
-#include <stdbool.h> // Necesario para bool
+#include <stdbool.h>
 
 // --- Prototipos de Funciones para el Manejo de Stop Words ---
 
