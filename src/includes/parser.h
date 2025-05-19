@@ -17,21 +17,19 @@
  * @return bool Devuelve true si el archivo se procesó completamente sin errores fatales 
  * de lo contrario devuelve false.
  */
-bool procesar_archivo_documento(const char* filename, indiceInvertido* index);
+bool procesar_archivo_documento(const char* nombre_archivo, indiceInvertido* index);
 
 /**
  * @brief Parsea una única línea del archivo de documentos para separar la URL del contenido.
- * Busca el último separador "||" en la línea para distinguir la URL del contenido [source: 40, 41].
+ * Busca el último separador "||" en la línea para distinguir la URL del contenido.
  * Asigna memoria dinámicamente para almacenar la URL y el contenido como cadenas separadas.
- * IMPORTANTE! El llamador de esta función es responsable de liberar la memoria
- * asignada para *url_out y *contenido_out usando free() cuando ya no se necesiten.
  * @param line La línea de texto completa leída del archivo.
  * @param url_out Puntero a un char* donde se almacenará el puntero a la cadena de la URL asignada.
  * @param contenido_out Puntero a un char* donde se almacenará el puntero a la cadena del contenido asignada.
  * @return bool Devuelve true si el parseo fue exitoso y se asignó memoria, false si la línea
  * no tiene el formato esperado o si falla la asignación de memoria.
  */
-bool parsear_linea(char* line, char** url_out, char** contenido_out); // Nombre cambiado
+bool parsear_linea(char* linea_original, char** url_salida, char** contenido_salida);
 
 /**
  * @brief Tokeniza el contenido textual de un documento y añade los términos válidos al índice.
@@ -46,6 +44,6 @@ bool parsear_linea(char* line, char** url_out, char** contenido_out); // Nombre 
  * @param index Puntero al índice invertido donde se añadirán los términos.
  */
 // Nombre cambiado
-void tokenizar_e_indexar_contenido(const char* contenido, const char* documento, indiceInvertido* index);
+void tokenizar_e_indexar_contenido(const char* contenido_const, const char* documento_id, indiceInvertido* indice);
 
 #endif // parser_H_
